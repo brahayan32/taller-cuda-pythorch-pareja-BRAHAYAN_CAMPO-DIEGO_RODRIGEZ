@@ -151,7 +151,7 @@ Analogía con CUDA en C: es equivalente a hacer `cudaMalloc` y `cudaMemcpy` para
 ### Pregunta 1
 > Tiempos obtenidos y comparación con la predicción.
 
-Nuestra predicción fue ~10x. [Completar si coincidió o no después de ejecutar].
+Nuestra predicción fue ~10x.
 
 ### Pregunta 2
 > Analogía del ciclo predicción → error → ajuste de pesos.
@@ -176,24 +176,17 @@ Para multiplicar matrices en una red neuronal, la GPU asigna un hilo por cada el
 #### Pregunta 1
 > ¿En qué rango quedó el Loss final?
 
-[Completar después de ejecutar con el valor real obtenido]
-
-Según la escala del taller:
-- Si quedó entre 0.07 y 0.1: la red generalizó correctamente para 3 épocas.
-- Si quedó entre 0.1 y 0.2: buen resultado considerando pocas épocas de entrenamiento.
-
 #### Pregunta 2
 > ¿Qué pasaría si entrenaran 2 épocas más?
 
-El loss seguiría bajando durante algunas épocas más, pero en algún punto dejaría de mejorar significativamente. El riesgo que aparece al entrenar demasiado es el **sobreajuste (overfitting)**: el modelo memoriza los datos de entrenamiento en lugar de aprender patrones generales. Esto se vería en la gráfica como el Training loss bajando pero el Test loss subiendo — las dos líneas se separan en lugar de converger.
+El loss seguiría bajando durante algunas épocas más, pero en algún punto dejaría de mejorar significativamente. El riesgo que aparece al entrenar demasiado es el modelo memoriza los datos de entrenamiento en lugar de aprender patrones generales. Esto se vería en la gráfica como el Training loss bajando pero el Test loss subiendo — las dos líneas se separan en lugar de converger.
 
----
-
+--
 ## 6. Evaluar y Visualizar Resultados
 
 ![Pantallazo precisión del modelo](pantallazos/06_precision.png)
 
-![Pantallazo predicciones correctas e incorrectas](pantallazos/06_predicciones.png)
+![Pantallazo predicciones correctas e incorrectas](pantallazos/Imagen9probabilidad.png)
 
 ### Pregunta 1
 > ¿Por qué medir precisión sobre datos que el modelo nunca vio?
@@ -204,10 +197,6 @@ Medir sobre datos nuevos (test set) garantiza que la precisión refleja capacida
 
 ### Pregunta 2
 > ¿Los dígitos mal clasificados tienen algo en común?
-
-[Completar después de observar la visualización]
-
-Generalmente los errores ocurren en dígitos visualmente similares: el 4 y el 9, el 3 y el 8, el 1 y el 7. La red se equivoca cuando la forma del dígito es ambigua o está escrita de forma poco convencional — por ejemplo un 7 sin tilde o un 1 muy inclinado.
 
 ### Pregunta 3
 > ¿Qué cambiarían para mejorar la precisión?
@@ -226,9 +215,7 @@ Generalmente los errores ocurren en dígitos visualmente similares: el 4 y el 9,
 ### Pregunta 1
 > ¿El modelo acertó con el dígito dibujado a mano?
 
-[Completar después de ejecutar]
 
-Si falló, la razón más probable es que nuestro dígito dibujado en Paint tiene fondo blanco y trazo oscuro, mientras que MNIST tiene fondo negro y trazo blanco. También el grosor del trazo y el tamaño dentro del marco 28×28 afectan la predicción.
 
 ### Pregunta 2
 > ¿Por qué es necesario invertir los colores con `ImageOps.invert`?
@@ -238,7 +225,6 @@ El dataset MNIST tiene fondo negro (valor 0) y trazo blanco (valor alto). Cuando
 ### Pregunta 3
 > Prueba con un dígito que creen que va a fallar.
 
-[Completar después de ejecutar]
 
 Un 4 sin cerrar o un 9 con la cola muy corta suele confundirse con otros dígitos. Esto demuestra que el modelo aprendió los patrones estadísticos del dataset MNIST específicamente — dígitos escritos de forma "estándar" — y tiene dificultades con estilos de escritura muy diferentes a los que entrenó.
 
@@ -255,8 +241,6 @@ Un 4 sin cerrar o un 9 con la cola muy corta suele confundirse con otros dígito
 
 ### Pregunta 1
 > ¿Cuál dígito tiene la probabilidad más alta? ¿Coincide con la predicción?
-
-[Completar después de ejecutar]
 
 El dígito con mayor probabilidad en la salida de softmax debe coincidir exactamente con la predicción del modelo, ya que `argmax` selecciona el índice de mayor valor — que es el mismo que softmax lleva a la probabilidad más alta.
 
